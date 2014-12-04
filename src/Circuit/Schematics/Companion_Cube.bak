@@ -395,25 +395,4 @@ Connection ~ 3150 1850
 Wire Wire Line
 	3150 1850 3150 2000
 Connection ~ 3150 2000
-$Comp
-L CP1 C?
-U 1 1 54805432
-P 5200 1650
-F 0 "C?" H 5250 1750 50  0000 L CNN
-F 1 "10uF" H 5250 1550 50  0000 L CNN
-F 2 "~" H 5200 1650 60  0000 C CNN
-F 3 "~" H 5200 1650 60  0000 C CNN
-	1    5200 1650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5000 1400 5200 1400
-Wire Wire Line
-	5200 1400 5200 1450
-Connection ~ 5000 1400
-Wire Wire Line
-	5200 1850 5200 1900
-Wire Wire Line
-	5200 1900 5000 1900
-Connection ~ 5000 1900
 $EndSCHEMATC

@@ -1,0 +1,18 @@
+eeschema (2013-07-07 BZR 4022)-stable  >> Creation date: 12/5/2014 5:21:16 PM
+#Cmp ( order = Reference )
+| C1         10nF        
+| K1         CONN_3      
+| R1         4.7K        
+| R2         270         
+| SW1        SW_PUSH     
+#End Cmp
+
+#Cmp ( order = Value )
+| 10nF         C1        
+| CONN_3       K1        
+| 270          R2        
+| 4.7K         R1        
+| SW_PUSH      SW1       
+#End Cmp
+
+#End List

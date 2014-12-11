@@ -12,6 +12,11 @@
 #define PIN_OUT		0x01
 #define PIN_IN		0x00
 
+#define LED_LEFT		0x02 /////////////////////////////////////
+#define LED_FRONT		0x01 // All of the different LED pins,	//
+#define LED_RIGHT		0x04 // corresponding to the PCB layout.//
+#define LED_BACK		0x03 /////////////////////////////////////
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/cpufunc.h>
@@ -41,6 +46,18 @@ void toggle_pin(char pin)
 void set_pin_dir(char pin, char dir)
 {
 	DDRB |= (dir & 0x01) << pin;
+}
+
+void display_number(unsigned char num)
+{
+	if(num == 1)
+		PORTB = LED_FRONT;
+	else if(num == 2)
+		PORTB = (0x1 << LED_RIGHT) | (0x1 << LED_LEFT);
+	else if(num == 3)
+		PORTB = (0x1 << LED_RIGHT) | (0x1 << LED_LEFT) | (0x1 << LED_BACK);
+	else
+		PORTB = 0x0F; //All 4 LEDs.
 }
 
 int main(void)

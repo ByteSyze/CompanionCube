@@ -3,27 +3,27 @@ Companion_Cube.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000080  00000000  00000000  00000074  2**1
+  0 .text         00000088  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          00000001  00800060  00800060  000000f4  2**0
+  1 .bss          00000002  00800060  00800060  000000fc  2**0
                   ALLOC
-  2 .comment      00000030  00000000  00000000  000000f4  2**0
+  2 .comment      00000030  00000000  00000000  000000fc  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000048  00000000  00000000  00000124  2**0
+  3 .debug_aranges 00000048  00000000  00000000  0000012c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000296  00000000  00000000  0000016c  2**0
+  4 .debug_info   00000248  00000000  00000000  00000174  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 0000015b  00000000  00000000  00000402  2**0
+  5 .debug_abbrev 0000011c  00000000  00000000  000003bc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   00000113  00000000  00000000  0000055d  2**0
+  6 .debug_line   00000110  00000000  00000000  000004d8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  0000008c  00000000  00000000  00000670  2**2
+  7 .debug_frame  00000088  00000000  00000000  000005e8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    00000195  00000000  00000000  000006fc  2**0
+  8 .debug_str    00000190  00000000  00000000  00000670  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    0000012f  00000000  00000000  00000891  2**0
+  9 .debug_loc    0000010f  00000000  00000000  00000800  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000038  00000000  00000000  000009c0  2**0
+ 10 .debug_ranges 00000038  00000000  00000000  0000090f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -32,7 +32,7 @@ Disassembly of section .text:
    0:	09 c0       	rjmp	.+18     	; 0x14 <__ctors_end>
    2:	16 c0       	rjmp	.+44     	; 0x30 <__bad_interrupt>
    4:	15 c0       	rjmp	.+42     	; 0x30 <__bad_interrupt>
-   6:	24 c0       	rjmp	.+72     	; 0x50 <__vector_3>
+   6:	23 c0       	rjmp	.+70     	; 0x4e <__vector_3>
    8:	13 c0       	rjmp	.+38     	; 0x30 <__bad_interrupt>
    a:	12 c0       	rjmp	.+36     	; 0x30 <__bad_interrupt>
    c:	11 c0       	rjmp	.+34     	; 0x30 <__bad_interrupt>
@@ -56,11 +56,11 @@ Disassembly of section .text:
   24:	1d 92       	st	X+, r1
 
 00000026 <.do_clear_bss_start>:
-  26:	a1 36       	cpi	r26, 0x61	; 97
+  26:	a2 36       	cpi	r26, 0x62	; 98
   28:	b2 07       	cpc	r27, r18
   2a:	e1 f7       	brne	.-8      	; 0x24 <.do_clear_bss_loop>
   2c:	02 d0       	rcall	.+4      	; 0x32 <main>
-  2e:	26 c0       	rjmp	.+76     	; 0x7c <_exit>
+  2e:	2a c0       	rjmp	.+84     	; 0x84 <_exit>
 
 00000030 <__bad_interrupt>:
   30:	e7 cf       	rjmp	.-50     	; 0x0 <__vectors>
@@ -78,67 +78,64 @@ void set_pin_dir(char pin, char dir)
   38:	ba 9a       	sbi	0x17, 2	; 23
   3a:	bb 9a       	sbi	0x17, 3	; 23
   3c:	bc 9a       	sbi	0x17, 4	; 23
-	
-	//TCCR0A	= (0x01 << WGM01);					// Set CTC mode.
-	//OCR0A	= 255;								//Set timer compare register to 255.
-	
+	set_pin_dir(1, PIN_OUT);					// PB1-4 are LEDs.
+	set_pin_dir(2, PIN_OUT);
+	set_pin_dir(3, PIN_OUT);
+	set_pin_dir(4, PIN_OUT);
 	
 	TCCR0B	|= (0x01 << CS02) | (0x01 << CS00);	// Set prescaler to 1024; start clock.
   3e:	83 b7       	in	r24, 0x33	; 51
   40:	85 60       	ori	r24, 0x05	; 5
   42:	83 bf       	out	0x33, r24	; 51
-	
-	TIMSK0	|= (0x01 << TOIE0);					//Set timer interrupt register to go off when equal to OCR0A.
+	TIMSK0	|= (0x01 << TOIE0);					//Set timer interrupt register to go off when timer overflows.
   44:	89 b7       	in	r24, 0x39	; 57
   46:	82 60       	ori	r24, 0x02	; 2
   48:	89 bf       	out	0x39, r24	; 57
 	sei();										//Enable interrupts
   4a:	78 94       	sei
-	return PINB >> pin & 0x01;
-}
+  4c:	ff cf       	rjmp	.-2      	; 0x4c <__SREG__+0xd>
 
-void set_pin(char pin, char val)
-{
-	PORTB |= (val & 0x01) << pin;
-  4c:	c1 9a       	sbi	0x18, 1	; 24
-  4e:	ff cf       	rjmp	.-2      	; 0x4e <__SREG__+0xf>
-
-00000050 <__vector_3>:
+0000004e <__vector_3>:
 		
     }
 }
 
 ISR(TIM0_OVF_vect)
 {
-  50:	1f 92       	push	r1
-  52:	0f 92       	push	r0
-  54:	0f b6       	in	r0, 0x3f	; 63
-  56:	0f 92       	push	r0
-  58:	11 24       	eor	r1, r1
-  5a:	8f 93       	push	r24
+  4e:	1f 92       	push	r1
+  50:	0f 92       	push	r0
+  52:	0f b6       	in	r0, 0x3f	; 63
+  54:	0f 92       	push	r0
+  56:	11 24       	eor	r1, r1
+  58:	8f 93       	push	r24
+  5a:	9f 93       	push	r25
 	counter++;
   5c:	80 91 60 00 	lds	r24, 0x0060
   60:	8f 5f       	subi	r24, 0xFF	; 255
   62:	80 93 60 00 	sts	0x0060, r24
 	
-	if(counter > 50)
-  66:	83 33       	cpi	r24, 0x33	; 51
-  68:	18 f0       	brcs	.+6      	; 0x70 <__vector_3+0x20>
+	if(counter > 5)
+  66:	86 30       	cpi	r24, 0x06	; 6
+  68:	30 f0       	brcs	.+12     	; 0x76 <__vector_3+0x28>
 	{
-		PORTB = 0;// ^= 1 << PB1;
-  6a:	18 ba       	out	0x18, r1	; 24
+		PORTB ^= 1 << PB1;
+  6a:	98 b3       	in	r25, 0x18	; 24
+  6c:	82 e0       	ldi	r24, 0x02	; 2
+  6e:	89 27       	eor	r24, r25
+  70:	88 bb       	out	0x18, r24	; 24
 		counter = 0;
-  6c:	10 92 60 00 	sts	0x0060, r1
+  72:	10 92 60 00 	sts	0x0060, r1
 	}
-  70:	8f 91       	pop	r24
-  72:	0f 90       	pop	r0
-  74:	0f be       	out	0x3f, r0	; 63
-  76:	0f 90       	pop	r0
-  78:	1f 90       	pop	r1
-  7a:	18 95       	reti
+  76:	9f 91       	pop	r25
+  78:	8f 91       	pop	r24
+  7a:	0f 90       	pop	r0
+  7c:	0f be       	out	0x3f, r0	; 63
+  7e:	0f 90       	pop	r0
+  80:	1f 90       	pop	r1
+  82:	18 95       	reti
 
-0000007c <_exit>:
-  7c:	f8 94       	cli
+00000084 <_exit>:
+  84:	f8 94       	cli
 
-0000007e <__stop_program>:
-  7e:	ff cf       	rjmp	.-2      	; 0x7e <__stop_program>
+00000086 <__stop_program>:
+  86:	ff cf       	rjmp	.-2      	; 0x86 <__stop_program>

@@ -14,8 +14,10 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/cpufunc.h>
 
-unsigned char counter;
+unsigned char counter;	//Extra counter to increment.
+unsigned char num;		//Number to flash on LEDs.
 
 char get_pin(char pin)
 {
@@ -30,7 +32,7 @@ void set_pin(char pin, char val)
 
 void toggle_pin(char pin)
 {
-	PINB |= 0x01 << pin;
+	PORTB ^= 1 << PB1;
 }
 
 /**
@@ -63,7 +65,7 @@ ISR(TIM0_OVF_vect)
 {
 	counter++;
 	
-	if(counter > 50)
+	if(counter > 5)
 	{
 		PORTB ^= 1 << PB1;
 		counter = 0;

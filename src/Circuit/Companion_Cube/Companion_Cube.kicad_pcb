@@ -2,11 +2,11 @@
 
   (general
     (links 41)
-    (no_connects 1)
+    (no_connects 0)
     (area 175.609956 109.169999 221.3356 152.450001)
     (thickness 1.6)
     (drawings 12)
-    (tracks 76)
+    (tracks 78)
     (zones 0)
     (modules 21)
     (nets 15)
@@ -59,7 +59,7 @@
     (aux_axis_origin 0 0)
     (visible_elements 7FFFFFFF)
     (pcbplotparams
-      (layerselection 3178497)
+      (layerselection 284196865)
       (usegerberextensions true)
       (excludeedgelayer true)
       (linewidth 0.150000)
@@ -78,12 +78,12 @@
       (plotothertext true)
       (plotinvisibletext false)
       (padsonsilk false)
-      (subtractmaskfromsilk false)
+      (subtractmaskfromsilk true)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory S:/Users/TyDesktop/Documents/GitHub/3D-LED-Companion-Cube/src/Circuit/Boards/Main/Gerber/))
   )
 
   (net 0 "")
@@ -885,6 +885,8 @@
   (gr_line (start 206.375 139.065) (end 207.645 139.065) (angle 90) (layer Edge.Cuts) (width 0.1))
   (gr_line (start 191.135 139.065) (end 206.375 139.065) (angle 90) (layer Edge.Cuts) (width 0.1))
 
+  (segment (start 185.05932 132.4102) (end 185.05932 135.16102) (width 0.55) (layer F.Cu) (net 1))
+  (segment (start 185.05932 135.16102) (end 184.96026 135.26008) (width 0.55) (layer F.Cu) (net 1) (tstamp 548934C0))
   (segment (start 209.55 130.175) (end 209.55 127) (width 0.254) (layer B.Cu) (net 2))
   (segment (start 198.755 120.65) (end 195.58 120.65) (width 0.254) (layer B.Cu) (net 3))
   (segment (start 189.23 131.445) (end 189.23 134.62) (width 0.254) (layer B.Cu) (net 4))

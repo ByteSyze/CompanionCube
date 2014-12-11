@@ -13,6 +13,9 @@
 #define PIN_IN		0x00
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
+
+unsigned char counter;
 
 char get_pin(char pin)
 {
@@ -40,14 +43,29 @@ void set_pin_dir(char pin, char dir)
 
 int main(void)
 {
-	set_pin_dir(0, PIN_IN);  // PB0 is connected to button.
-	set_pin_dir(1, PIN_OUT); // PB1-4 are LEDs.
+	set_pin_dir(0, PIN_IN);						// PB0 is connected to button.
+	set_pin_dir(1, PIN_OUT);					// PB1-4 are LEDs.
 	set_pin_dir(2, PIN_OUT);
 	set_pin_dir(3, PIN_OUT);
 	set_pin_dir(4, PIN_OUT);
 	
+	TCCR0B	|= (0x01 << CS02) | (0x01 << CS00);	// Set prescaler to 1024; start clock.
+	TIMSK0	|= (0x01 << TOIE0);					//Set timer interrupt register to go off when timer overflows.
+	sei();										//Enable interrupts
+	
     while(1)
     {
-		set_pin(1, 1);
+		
     }
+}
+
+ISR(TIM0_OVF_vect)
+{
+	counter++;
+	
+	if(counter > 50)
+	{
+		PORTB ^= 1 << PB1;
+		counter = 0;
+	}
 }

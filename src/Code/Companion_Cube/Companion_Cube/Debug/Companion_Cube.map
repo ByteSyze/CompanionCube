@@ -2,14 +2,8 @@ Archive member included because of file (symbol)
 
 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
                               s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/tiny-stack/crttn13.o (exit)
-s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
-                              Companion_Cube.o (__do_clear_bss)
-
-Allocating common symbols
-Common symbol       size              file
-
-counter             0x1               Companion_Cube.o
-num                 0x1               Companion_Cube.o
+s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
+                              Companion_Cube.o (__do_copy_data)
 
 Discarded input sections
 
@@ -19,7 +13,7 @@ Discarded input sections
  .data          0x00000000        0x0 Companion_Cube.o
  .bss           0x00000000        0x0 Companion_Cube.o
  .text.get_pin  0x00000000       0x18 Companion_Cube.o
- .text.set_pin  0x00000000       0x1c Companion_Cube.o
+ .text.set_pin  0x00000000       0x26 Companion_Cube.o
  .text.toggle_pin
                 0x00000000        0xa Companion_Cube.o
  .text.set_pin_dir
@@ -40,22 +34,22 @@ Discarded input sections
                 0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
- .text          0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
- .data          0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
- .bss           0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
 
 Memory Configuration
 
@@ -172,7 +166,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000       0x88
+.text           0x00000000       0xe2
  *(.vectors)
  .vectors       0x00000000       0x14 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/tiny-stack/crttn13.o
                 0x00000000                __vector_default
@@ -211,8 +205,8 @@ END GROUP
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000001c       0x10 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_clear_bss.o)
-                0x0000001c                __do_clear_bss
+ .init4         0x0000001c       0x16 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_copy_data.o)
+                0x0000001c                __do_copy_data
  *(.init4)
  *(.init5)
  *(.init5)
@@ -223,31 +217,34 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000002c        0x4 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/tiny-stack/crttn13.o
+ .init9         0x00000032        0x4 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/tiny-stack/crttn13.o
  *(.init9)
  *(.text)
- .text          0x00000030        0x2 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/tiny-stack/crttn13.o
-                0x00000030                __vector_1
-                0x00000030                __bad_interrupt
-                0x00000030                __vector_6
-                0x00000030                __vector_7
-                0x00000030                __vector_5
-                0x00000030                __vector_4
-                0x00000030                __vector_9
-                0x00000030                __vector_2
-                0x00000030                __vector_8
-                0x00000032                . = ALIGN (0x2)
+ .text          0x00000036        0x2 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/tiny-stack/crttn13.o
+                0x00000036                __vector_1
+                0x00000036                __bad_interrupt
+                0x00000036                __vector_6
+                0x00000036                __vector_7
+                0x00000036                __vector_5
+                0x00000036                __vector_4
+                0x00000036                __vector_9
+                0x00000036                __vector_2
+                0x00000036                __vector_8
+                0x00000038                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x00000032       0x1c Companion_Cube.o
-                0x00000032                main
+ .text.display_number
+                0x00000038       0x24 Companion_Cube.o
+                0x00000038                display_number
+ .text.main     0x0000005c       0x1c Companion_Cube.o
+                0x0000005c                main
  .text.__vector_3
-                0x0000004e       0x36 Companion_Cube.o
-                0x0000004e                __vector_3
-                0x00000084                . = ALIGN (0x2)
+                0x00000078       0x66 Companion_Cube.o
+                0x00000078                __vector_3
+                0x000000de                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000084        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
-                0x00000084                _exit
-                0x00000084                exit
+ .fini9         0x000000de        0x0 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
+                0x000000de                _exit
+                0x000000de                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -266,32 +263,32 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000084        0x4 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
+ .fini0         0x000000de        0x4 s:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25/tiny-stack\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000088                _etext = .
+                0x000000e2                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000088
+.data           0x00800060        0x2 load address 0x000000e2
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.counter  0x00800060        0x1 Companion_Cube.o
+                0x00800060                counter
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800060                . = ALIGN (0x2)
-                0x00800060                _edata = .
-                0x00800060                PROVIDE (__data_end, .)
+                0x00800062                . = ALIGN (0x2)
+ *fill*         0x00800061        0x1 
+                0x00800062                _edata = .
+                0x00800062                PROVIDE (__data_end, .)
 
-.bss            0x00800060        0x2
-                0x00800060                PROVIDE (__bss_start, .)
+.bss            0x00800062        0x0
+                0x00800062                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800060        0x2 Companion_Cube.o
-                0x00800060                counter
-                0x00800061                num
                 0x00800062                PROVIDE (__bss_end, .)
-                0x00000088                __data_load_start = LOADADDR (.data)
-                0x00000088                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000000e2                __data_load_start = LOADADDR (.data)
+                0x000000e4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800062        0x0
                 0x00800062                PROVIDE (__noinit_start, .)
@@ -357,38 +354,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x48
+.debug_aranges  0x00000000       0x50
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x48 Companion_Cube.o
+                0x00000000       0x50 Companion_Cube.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x248
+.debug_info     0x00000000      0x26e
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x248 Companion_Cube.o
+ .debug_info    0x00000000      0x26e Companion_Cube.o
 
-.debug_abbrev   0x00000000      0x11c
+.debug_abbrev   0x00000000      0x118
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x11c Companion_Cube.o
+ .debug_abbrev  0x00000000      0x118 Companion_Cube.o
 
-.debug_line     0x00000000      0x110
+.debug_line     0x00000000      0x12c
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x110 Companion_Cube.o
+ .debug_line    0x00000000      0x12c Companion_Cube.o
 
-.debug_frame    0x00000000       0x88
+.debug_frame    0x00000000       0xcc
  *(.debug_frame)
- .debug_frame   0x00000000       0x88 Companion_Cube.o
+ .debug_frame   0x00000000       0xcc Companion_Cube.o
 
-.debug_str      0x00000000      0x190
+.debug_str      0x00000000      0x19f
  *(.debug_str)
- .debug_str     0x00000000      0x190 Companion_Cube.o
-                                0x1c9 (size before relaxing)
+ .debug_str     0x00000000      0x19f Companion_Cube.o
+                                0x1d8 (size before relaxing)
 
-.debug_loc      0x00000000      0x10f
+.debug_loc      0x00000000      0x221
  *(.debug_loc)
- .debug_loc     0x00000000      0x10f Companion_Cube.o
+ .debug_loc     0x00000000      0x221 Companion_Cube.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -408,9 +405,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x38
+.debug_ranges   0x00000000       0x40
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x38 Companion_Cube.o
+ .debug_ranges  0x00000000       0x40 Companion_Cube.o
 
 .debug_macro
  *(.debug_macro)

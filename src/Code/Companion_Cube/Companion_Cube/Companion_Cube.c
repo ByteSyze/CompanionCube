@@ -21,7 +21,8 @@
 #include <avr/interrupt.h>
 #include <avr/cpufunc.h>
 
-unsigned char counter = 6;	//Extra counter to increment.
+unsigned char counter	= 0;	//Extra counter to increment.
+unsigned char number	= 3;	//Number to display.
 
 char get_pin(char pin)
 {
@@ -83,17 +84,26 @@ int main(void)
 /**Timer overflow interrupt. Called whenever the timer hits its maximum and resets.*/
 ISR(TIM0_OVF_vect)
 {
-	counter++;
 	if(counter % 2 == 0)
 	{
 		PORTB = 0x00; //Turn off LEDs.
 	}
 	else
 	{
-		display_number(counter/2);
-		if(counter >= 8)
+		if(number == 3 && counter < 8)
 		{
-			counter = 2;
+			counter++;
+			return; //Add some delay after 2.
+		}
+		
+		display_number(number);
+		
+		if(++number > 4)
+		{
+			counter = 0;
+			number	= 1;
+			return;
 		}
 	}
+	counter++;
 }

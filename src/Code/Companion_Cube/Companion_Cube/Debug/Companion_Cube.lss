@@ -3,42 +3,44 @@ Companion_Cube.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000e2  00000000  00000000  00000074  2**1
+  0 .text         00000116  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000002  00800060  000000e2  00000156  2**0
+  1 .data         00000002  00800060  00000116  000001aa  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  00000158  2**0
+  2 .bss          00000001  00800062  00800062  000001ac  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001ac  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000050  00000000  00000000  00000188  2**0
+  4 .debug_aranges 00000050  00000000  00000000  000001dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   0000026e  00000000  00000000  000001d8  2**0
+  5 .debug_info   00000280  00000000  00000000  0000022c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000118  00000000  00000000  00000446  2**0
+  6 .debug_abbrev 00000118  00000000  00000000  000004ac  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000012c  00000000  00000000  0000055e  2**0
+  7 .debug_line   00000138  00000000  00000000  000005c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  000000cc  00000000  00000000  0000068c  2**2
+  8 .debug_frame  000000cc  00000000  00000000  000006fc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000019f  00000000  00000000  00000758  2**0
+  9 .debug_str    0000019f  00000000  00000000  000007c8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000221  00000000  00000000  000008f7  2**0
+ 10 .debug_loc    00000221  00000000  00000000  00000967  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000040  00000000  00000000  00000b18  2**0
+ 11 .debug_ranges 00000040  00000000  00000000  00000b88  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	09 c0       	rjmp	.+18     	; 0x14 <__ctors_end>
-   2:	19 c0       	rjmp	.+50     	; 0x36 <__bad_interrupt>
-   4:	18 c0       	rjmp	.+48     	; 0x36 <__bad_interrupt>
-   6:	38 c0       	rjmp	.+112    	; 0x78 <__vector_3>
-   8:	16 c0       	rjmp	.+44     	; 0x36 <__bad_interrupt>
-   a:	15 c0       	rjmp	.+42     	; 0x36 <__bad_interrupt>
-   c:	14 c0       	rjmp	.+40     	; 0x36 <__bad_interrupt>
-   e:	13 c0       	rjmp	.+38     	; 0x36 <__bad_interrupt>
-  10:	12 c0       	rjmp	.+36     	; 0x36 <__bad_interrupt>
-  12:	11 c0       	rjmp	.+34     	; 0x36 <__bad_interrupt>
+   2:	21 c0       	rjmp	.+66     	; 0x46 <__bad_interrupt>
+   4:	20 c0       	rjmp	.+64     	; 0x46 <__bad_interrupt>
+   6:	40 c0       	rjmp	.+128    	; 0x88 <__vector_3>
+   8:	1e c0       	rjmp	.+60     	; 0x46 <__bad_interrupt>
+   a:	1d c0       	rjmp	.+58     	; 0x46 <__bad_interrupt>
+   c:	1c c0       	rjmp	.+56     	; 0x46 <__bad_interrupt>
+   e:	1b c0       	rjmp	.+54     	; 0x46 <__bad_interrupt>
+  10:	1a c0       	rjmp	.+52     	; 0x46 <__bad_interrupt>
+  12:	19 c0       	rjmp	.+50     	; 0x46 <__bad_interrupt>
 
 00000014 <__ctors_end>:
   14:	11 24       	eor	r1, r1
@@ -50,154 +52,190 @@ Disassembly of section .text:
   1c:	10 e0       	ldi	r17, 0x00	; 0
   1e:	a0 e6       	ldi	r26, 0x60	; 96
   20:	b0 e0       	ldi	r27, 0x00	; 0
-  22:	e2 ee       	ldi	r30, 0xE2	; 226
-  24:	f0 e0       	ldi	r31, 0x00	; 0
+  22:	e6 e1       	ldi	r30, 0x16	; 22
+  24:	f1 e0       	ldi	r31, 0x01	; 1
   26:	02 c0       	rjmp	.+4      	; 0x2c <__do_copy_data+0x10>
   28:	05 90       	lpm	r0, Z+
   2a:	0d 92       	st	X+, r0
   2c:	a2 36       	cpi	r26, 0x62	; 98
   2e:	b1 07       	cpc	r27, r17
   30:	d9 f7       	brne	.-10     	; 0x28 <__do_copy_data+0xc>
-  32:	14 d0       	rcall	.+40     	; 0x5c <main>
-  34:	54 c0       	rjmp	.+168    	; 0xde <_exit>
 
-00000036 <__bad_interrupt>:
-  36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
+00000032 <__do_clear_bss>:
+  32:	20 e0       	ldi	r18, 0x00	; 0
+  34:	a2 e6       	ldi	r26, 0x62	; 98
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
 
-00000038 <display_number>:
+0000003a <.do_clear_bss_loop>:
+  3a:	1d 92       	st	X+, r1
+
+0000003c <.do_clear_bss_start>:
+  3c:	a3 36       	cpi	r26, 0x63	; 99
+  3e:	b2 07       	cpc	r27, r18
+  40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
+  42:	14 d0       	rcall	.+40     	; 0x6c <main>
+  44:	66 c0       	rjmp	.+204    	; 0x112 <_exit>
+
+00000046 <__bad_interrupt>:
+  46:	dc cf       	rjmp	.-72     	; 0x0 <__vectors>
+
+00000048 <display_number>:
 	DDRB |= (dir & 0x01) << pin;
 }
 
 void display_number(unsigned char num)
 {
 	if(num == 1)
-  38:	81 30       	cpi	r24, 0x01	; 1
-  3a:	19 f4       	brne	.+6      	; 0x42 <__SREG__+0x3>
+  48:	81 30       	cpi	r24, 0x01	; 1
+  4a:	19 f4       	brne	.+6      	; 0x52 <display_number+0xa>
 		PORTB = 1 << LED_FRONT;
-  3c:	82 e0       	ldi	r24, 0x02	; 2
-  3e:	88 bb       	out	0x18, r24	; 24
-  40:	08 95       	ret
+  4c:	82 e0       	ldi	r24, 0x02	; 2
+  4e:	88 bb       	out	0x18, r24	; 24
+  50:	08 95       	ret
 	else if(num == 2)
-  42:	82 30       	cpi	r24, 0x02	; 2
-  44:	19 f4       	brne	.+6      	; 0x4c <__SREG__+0xd>
+  52:	82 30       	cpi	r24, 0x02	; 2
+  54:	19 f4       	brne	.+6      	; 0x5c <display_number+0x14>
 		PORTB = (0x1 << LED_RIGHT) | (0x1 << LED_LEFT);
-  46:	84 e1       	ldi	r24, 0x14	; 20
-  48:	88 bb       	out	0x18, r24	; 24
-  4a:	08 95       	ret
-	else if(num == 3)
-  4c:	83 30       	cpi	r24, 0x03	; 3
-  4e:	19 f4       	brne	.+6      	; 0x56 <__SREG__+0x17>
-		PORTB = (0x1 << LED_RIGHT) | (0x1 << LED_LEFT) | (0x1 << LED_BACK);
-  50:	8c e1       	ldi	r24, 0x1C	; 28
-  52:	88 bb       	out	0x18, r24	; 24
-  54:	08 95       	ret
-	else
-		PORTB = 0x1E; //All 4 LEDs.
-  56:	8e e1       	ldi	r24, 0x1E	; 30
+  56:	84 e1       	ldi	r24, 0x14	; 20
   58:	88 bb       	out	0x18, r24	; 24
   5a:	08 95       	ret
+	else if(num == 3)
+  5c:	83 30       	cpi	r24, 0x03	; 3
+  5e:	19 f4       	brne	.+6      	; 0x66 <display_number+0x1e>
+		PORTB = (0x1 << LED_RIGHT) | (0x1 << LED_LEFT) | (0x1 << LED_BACK);
+  60:	8c e1       	ldi	r24, 0x1C	; 28
+  62:	88 bb       	out	0x18, r24	; 24
+  64:	08 95       	ret
+	else
+		PORTB = 0x1E; //All 4 LEDs.
+  66:	8e e1       	ldi	r24, 0x1E	; 30
+  68:	88 bb       	out	0x18, r24	; 24
+  6a:	08 95       	ret
 
-0000005c <main>:
+0000006c <main>:
 /**
 * Sets the I/O direction of the specified pin. 1 for output, 0 for input.
 */
 void set_pin_dir(char pin, char dir)
 {
 	DDRB |= (dir & 0x01) << pin;
-  5c:	87 b3       	in	r24, 0x17	; 23
-  5e:	87 bb       	out	0x17, r24	; 23
-  60:	b9 9a       	sbi	0x17, 1	; 23
-  62:	ba 9a       	sbi	0x17, 2	; 23
-  64:	bb 9a       	sbi	0x17, 3	; 23
-  66:	bc 9a       	sbi	0x17, 4	; 23
+  6c:	87 b3       	in	r24, 0x17	; 23
+  6e:	87 bb       	out	0x17, r24	; 23
+  70:	b9 9a       	sbi	0x17, 1	; 23
+  72:	ba 9a       	sbi	0x17, 2	; 23
+  74:	bb 9a       	sbi	0x17, 3	; 23
+  76:	bc 9a       	sbi	0x17, 4	; 23
 	set_pin_dir(1, PIN_OUT);					// PB1-4 are LEDs.
 	set_pin_dir(2, PIN_OUT);
 	set_pin_dir(3, PIN_OUT);
 	set_pin_dir(4, PIN_OUT);
 	
 	TCCR0B	|= (0x01 << CS02) | (0x01 << CS00);	// Set prescaler to 1024; start clock.
-  68:	83 b7       	in	r24, 0x33	; 51
-  6a:	85 60       	ori	r24, 0x05	; 5
-  6c:	83 bf       	out	0x33, r24	; 51
+  78:	83 b7       	in	r24, 0x33	; 51
+  7a:	85 60       	ori	r24, 0x05	; 5
+  7c:	83 bf       	out	0x33, r24	; 51
 	TIMSK0	|= (0x01 << TOIE0);					//Set timer interrupt register to go off when timer overflows.
-  6e:	89 b7       	in	r24, 0x39	; 57
-  70:	82 60       	ori	r24, 0x02	; 2
-  72:	89 bf       	out	0x39, r24	; 57
+  7e:	89 b7       	in	r24, 0x39	; 57
+  80:	82 60       	ori	r24, 0x02	; 2
+  82:	89 bf       	out	0x39, r24	; 57
 	sei();										//Enable interrupts
-  74:	78 94       	sei
-  76:	ff cf       	rjmp	.-2      	; 0x76 <main+0x1a>
+  84:	78 94       	sei
+  86:	ff cf       	rjmp	.-2      	; 0x86 <main+0x1a>
 
-00000078 <__vector_3>:
+00000088 <__vector_3>:
     }
 }
 
 /**Timer overflow interrupt. Called whenever the timer hits its maximum and resets.*/
 ISR(TIM0_OVF_vect)
 {
-  78:	1f 92       	push	r1
-  7a:	0f 92       	push	r0
-  7c:	0f b6       	in	r0, 0x3f	; 63
-  7e:	0f 92       	push	r0
-  80:	11 24       	eor	r1, r1
-  82:	2f 93       	push	r18
-  84:	3f 93       	push	r19
-  86:	4f 93       	push	r20
-  88:	5f 93       	push	r21
-  8a:	6f 93       	push	r22
-  8c:	7f 93       	push	r23
-  8e:	8f 93       	push	r24
-  90:	9f 93       	push	r25
-  92:	af 93       	push	r26
-  94:	bf 93       	push	r27
-  96:	ef 93       	push	r30
-  98:	ff 93       	push	r31
-	counter++;
-  9a:	80 91 60 00 	lds	r24, 0x0060
-  9e:	8f 5f       	subi	r24, 0xFF	; 255
-  a0:	80 93 60 00 	sts	0x0060, r24
+  88:	1f 92       	push	r1
+  8a:	0f 92       	push	r0
+  8c:	0f b6       	in	r0, 0x3f	; 63
+  8e:	0f 92       	push	r0
+  90:	11 24       	eor	r1, r1
+  92:	2f 93       	push	r18
+  94:	3f 93       	push	r19
+  96:	4f 93       	push	r20
+  98:	5f 93       	push	r21
+  9a:	6f 93       	push	r22
+  9c:	7f 93       	push	r23
+  9e:	8f 93       	push	r24
+  a0:	9f 93       	push	r25
+  a2:	af 93       	push	r26
+  a4:	bf 93       	push	r27
+  a6:	ef 93       	push	r30
+  a8:	ff 93       	push	r31
 	if(counter % 2 == 0)
-  a4:	80 fd       	sbrc	r24, 0
-  a6:	02 c0       	rjmp	.+4      	; 0xac <__stack+0xd>
+  aa:	90 91 62 00 	lds	r25, 0x0062
+  ae:	90 fd       	sbrc	r25, 0
+  b0:	02 c0       	rjmp	.+4      	; 0xb6 <__stack+0x17>
 	{
 		PORTB = 0x00; //Turn off LEDs.
-  a8:	18 ba       	out	0x18, r1	; 24
-  aa:	08 c0       	rjmp	.+16     	; 0xbc <__stack+0x1d>
+  b2:	18 ba       	out	0x18, r1	; 24
+  b4:	18 c0       	rjmp	.+48     	; 0xe6 <__stack+0x47>
 	}
 	else
 	{
-		display_number(counter/2);
-  ac:	86 95       	lsr	r24
-  ae:	c4 df       	rcall	.-120    	; 0x38 <display_number>
-		if(counter >= 8)
-  b0:	80 91 60 00 	lds	r24, 0x0060
-  b4:	88 30       	cpi	r24, 0x08	; 8
-  b6:	10 f0       	brcs	.+4      	; 0xbc <__stack+0x1d>
+		if(number == 3 && counter < 8)
+  b6:	80 91 60 00 	lds	r24, 0x0060
+  ba:	83 30       	cpi	r24, 0x03	; 3
+  bc:	31 f4       	brne	.+12     	; 0xca <__stack+0x2b>
+  be:	98 30       	cpi	r25, 0x08	; 8
+  c0:	20 f4       	brcc	.+8      	; 0xca <__stack+0x2b>
+		{
+			counter++;
+  c2:	9f 5f       	subi	r25, 0xFF	; 255
+  c4:	90 93 62 00 	sts	0x0062, r25
+			return; //Add some delay after 2.
+  c8:	13 c0       	rjmp	.+38     	; 0xf0 <__stack+0x51>
+		}
+		
+		display_number(number);
+  ca:	be df       	rcall	.-132    	; 0x48 <display_number>
+		
+		if(++number > 4)
+  cc:	80 91 60 00 	lds	r24, 0x0060
+  d0:	8f 5f       	subi	r24, 0xFF	; 255
+  d2:	80 93 60 00 	sts	0x0060, r24
+  d6:	85 30       	cpi	r24, 0x05	; 5
+  d8:	30 f0       	brcs	.+12     	; 0xe6 <__stack+0x47>
 		{
 			counter = 0;
-  b8:	10 92 60 00 	sts	0x0060, r1
+  da:	10 92 62 00 	sts	0x0062, r1
+			number	= 1;
+  de:	81 e0       	ldi	r24, 0x01	; 1
+  e0:	80 93 60 00 	sts	0x0060, r24
+			return;
+  e4:	05 c0       	rjmp	.+10     	; 0xf0 <__stack+0x51>
 		}
 	}
+	counter++;
+  e6:	80 91 62 00 	lds	r24, 0x0062
+  ea:	8f 5f       	subi	r24, 0xFF	; 255
+  ec:	80 93 62 00 	sts	0x0062, r24
 }
-  bc:	ff 91       	pop	r31
-  be:	ef 91       	pop	r30
-  c0:	bf 91       	pop	r27
-  c2:	af 91       	pop	r26
-  c4:	9f 91       	pop	r25
-  c6:	8f 91       	pop	r24
-  c8:	7f 91       	pop	r23
-  ca:	6f 91       	pop	r22
-  cc:	5f 91       	pop	r21
-  ce:	4f 91       	pop	r20
-  d0:	3f 91       	pop	r19
-  d2:	2f 91       	pop	r18
-  d4:	0f 90       	pop	r0
-  d6:	0f be       	out	0x3f, r0	; 63
-  d8:	0f 90       	pop	r0
-  da:	1f 90       	pop	r1
-  dc:	18 95       	reti
+  f0:	ff 91       	pop	r31
+  f2:	ef 91       	pop	r30
+  f4:	bf 91       	pop	r27
+  f6:	af 91       	pop	r26
+  f8:	9f 91       	pop	r25
+  fa:	8f 91       	pop	r24
+  fc:	7f 91       	pop	r23
+  fe:	6f 91       	pop	r22
+ 100:	5f 91       	pop	r21
+ 102:	4f 91       	pop	r20
+ 104:	3f 91       	pop	r19
+ 106:	2f 91       	pop	r18
+ 108:	0f 90       	pop	r0
+ 10a:	0f be       	out	0x3f, r0	; 63
+ 10c:	0f 90       	pop	r0
+ 10e:	1f 90       	pop	r1
+ 110:	18 95       	reti
 
-000000de <_exit>:
-  de:	f8 94       	cli
+00000112 <_exit>:
+ 112:	f8 94       	cli
 
-000000e0 <__stop_program>:
-  e0:	ff cf       	rjmp	.-2      	; 0xe0 <__stop_program>
+00000114 <__stop_program>:
+ 114:	ff cf       	rjmp	.-2      	; 0x114 <__stop_program>

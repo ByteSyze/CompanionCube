@@ -1,4 +1,4 @@
-eeschema (2013-07-07 BZR 4022)-stable  >> Creation date: 12/5/2014 8:27:53 PM
+eeschema (2013-07-07 BZR 4022)-stable  >> Creation date: 12/10/2014 7:18:33 PM
 #Cmp ( order = Reference )
 | C1         10uF        
 | C2         10uF        
@@ -6,7 +6,13 @@ eeschema (2013-07-07 BZR 4022)-stable  >> Creation date: 12/5/2014 8:27:53 PM
 | CON1       AVR-ISP-6   
 | D1         RED         
 | IC1        ATTINY85-S  
-| P1         CONN_11     
+| P1         LED_4       
+| P2         LED_3       
+| P3         LED_2       
+| P4         LED_1       
+| P5         CONN_1      
+| P6         CONN_1      
+| P7         CONN_1      
 | R1         82          
 | R2         82          
 | R3         82          
@@ -24,7 +30,13 @@ eeschema (2013-07-07 BZR 4022)-stable  >> Creation date: 12/5/2014 8:27:53 PM
 | AVR-ISP-6    CON1      
 | RED          D1        
 | ATTINY85-S   IC1       
-| CONN_11      P1        
+| LED_4        P1        
+| LED_3        P2        
+| LED_2        P3        
+| LED_1        P4        
+| CONN_1       P5        
+| CONN_1       P6        
+| CONN_1       P7        
 | 82           R1        
 | 82           R2        
 | 82           R3        

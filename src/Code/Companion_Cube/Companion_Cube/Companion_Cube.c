@@ -12,10 +12,14 @@
 #define PIN_OUT			0x01
 #define PIN_IN			0x00
 
-#define LED_LEFT		PB2 /////////////////////////////////////2
-#define LED_FRONT		PB1 // All of the different LED pins,  //1
-#define LED_RIGHT		PB4 // corresponding to the PCB layout.//4
-#define LED_BACK		PB3 /////////////////////////////////////3
+#define LED_LEFT		PB2 /////////////////////////////////////
+#define LED_FRONT		PB1 // All of the different LED pins,  //
+#define LED_RIGHT		PB4 // corresponding to the PCB layout.//
+#define LED_BACK		PB3 /////////////////////////////////////
+
+#define STATE_STARTUP	1	//Initialization state.
+#define STATE_FLASH		2	//LED flashing state.
+#define STATE_SLEEP		3	//Sleeping state.
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -23,6 +27,12 @@
 
 unsigned char counter	= 0;	//Extra counter to increment.
 unsigned char number	= 3;	//Number to display.
+
+unsigned char button_val = 1;
+unsigned char last_button_val = 1;
+unsigned char button_hold_time = 0;
+
+unsigned char state		= STATE_SLEEP; //Current state.
 
 char get_pin(char pin)
 {
@@ -71,39 +81,88 @@ int main(void)
 	set_pin_dir(3, PIN_OUT);
 	set_pin_dir(4, PIN_OUT);
 	
-	TCCR0B	|= (0x01 << CS02) | (0x01 << CS00);	// Set prescaler to 1024; start clock.
+	TCCR0B	|= (0x01 << CS02); //| (0x01 << CS00);	// Set prescaler to 1024; start clock.
 	TIMSK0	|= (0x01 << TOIE0);					//Set timer interrupt register to go off when timer overflows.
 	sei();										//Enable interrupts
 	
-    while(1)
-    {
-		
-    }
+	while(1);
 }
 
 /**Timer overflow interrupt. Called whenever the timer hits its maximum and resets.*/
 ISR(TIM0_OVF_vect)
 {
-	if(counter % 2 == 0)
+	last_button_val = button_val;
+	button_val = (PINB >> PB0) & 0x01;
+	
+	if(button_val == 0)
 	{
-		PORTB = 0x00; //Turn off LEDs.
+		if(last_button_val == button_val)
+			button_hold_time++;
+		else
+			button_hold_time=0;
 	}
-	else
+	if(button_hold_time == 5)
 	{
-		if(number == 3 && counter < 8)
+		if(state == STATE_SLEEP)
 		{
-			counter++;
-			return; //Add some delay after 2.
+			TCCR0B	|= (0x01 << CS02); 
+			state = STATE_STARTUP;
 		}
-		
-		display_number(number);
-		
-		if(++number > 4)
-		{
-			counter = 0;
-			number	= 1;
-			return;
-		}
+		else if(state == STATE_FLASH)
+			state = STATE_SLEEP;
 	}
-	counter++;
+	
+	if(state == STATE_STARTUP)
+	{
+		if(counter % 2)
+		{
+			if(number % 4 == 0)
+				PORTB = 0x01 << LED_RIGHT;
+			else if(number % 3 == 0)
+				PORTB = 0x01 << LED_BACK;
+			else if(number % 2 == 0)
+				PORTB = 0x01 << LED_LEFT;
+			else if(number % 1 == 0)
+				PORTB = 0x01 << LED_FRONT;
+			
+			if(++number > 16)
+			{
+				TCCR0B	|= (0x01 << CS02) | (0x01 << CS00);
+				state = STATE_FLASH;
+				number = 3;
+				counter = 0;
+				return;
+			}
+		}
+		counter++;
+	}	
+	else if(state == STATE_FLASH)
+	{
+		if(counter % 2 == 0)
+		{
+			PORTB = 0x00; //Turn off LEDs.
+		}
+		else
+		{
+			if(number == 3 && counter < 8)
+			{
+				counter++;
+				return; //Add some delay after 2.
+			}
+		
+			display_number(number);
+		
+			if(++number > 4)
+			{
+				counter = 0;
+				number	= 1;
+				return;
+			}
+		}
+		counter++;
+	}
+	else //Assume sleep
+	{
+		PORTB = 0x00;
+	}
 }

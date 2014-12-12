@@ -105,7 +105,7 @@ ISR(TIM0_OVF_vect)
 	{
 		if(state == STATE_SLEEP)
 		{
-			TCCR0B	|= (0x01 << CS02); 
+			TCCR0B	&= ~(1 << CS00); 
 			state = STATE_STARTUP;
 		}
 		else if(state == STATE_FLASH)

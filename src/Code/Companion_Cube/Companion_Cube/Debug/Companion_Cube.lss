@@ -202,9 +202,9 @@ ISR(TIM0_OVF_vect)
   e0:	83 30       	cpi	r24, 0x03	; 3
   e2:	39 f4       	brne	.+14     	; 0xf2 <__stack+0x53>
 		{
-			TCCR0B	|= (0x01 << CS02); 
+			TCCR0B	&= ~(1 << CS00); 
   e4:	83 b7       	in	r24, 0x33	; 51
-  e6:	84 60       	ori	r24, 0x04	; 4
+  e6:	8e 7f       	andi	r24, 0xFE	; 254
   e8:	83 bf       	out	0x33, r24	; 51
 			state = STATE_STARTUP;
   ea:	81 e0       	ldi	r24, 0x01	; 1

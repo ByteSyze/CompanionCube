@@ -7,5 +7,5 @@ _____________________
 
 The original companion cube model was created by Poh and downloaded from thingiverse here: http://www.thingiverse.com/thing:33138
 _____________________
-The circuit is based on an attiny25/45/85 MCU, that will require additional hardware to program 
-(e.g. AVR mkII or ATMEL-ICE).
+The circuit is based on an attiny13 MCU, that will require additional hardware to program 
+(e.g. AVR mkII or ATMEL-ICE). All schematics and circuits are designed in KiCAD.
